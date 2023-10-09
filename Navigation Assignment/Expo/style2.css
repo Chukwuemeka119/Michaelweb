@@ -1,0 +1,33 @@
+
+.left{
+    padding: 0;
+    float: left;
+    width: 20%;
+    height: 400px;
+}
+.main{
+    float: left;
+    width: 57%;
+    padding: 20px;
+    height: 400px;
+    margin: 0px;
+    margin-left: 25px;
+}
+.right{
+    padding: 20px;
+    float: left;
+    width: 20%;
+    height: 400px;
+    margin-right: 10px;
+}
+@media only screen and (max-width:500px) {
+    /* For mobile phone*/
+.left, .main, .right{
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 0;
+}
+}
