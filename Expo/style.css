@@ -1,0 +1,30 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    font-size: 15px;
+    font-variant: all-small-caps;
+    background-image: linear-gradient(120deg, #f6d365, #fda085);
+	color: white;
+	font-family: "poppins", sans-serif;
+}
+.w3-third{
+    font-variant: normal;
+}
+iframe{
+    width: 200px;
+    height: 200px;
+}
+img{
+    padding-left: 0;
+    margin-left: 0;
+    width: 350px;
+    height: 300px;
+}	
+@media only screen and (max-width:500px) {
+/* For mobile phone*/
+body{
+    font-size: 15px;
+    font-variant: all-small-caps;
+}
+}
