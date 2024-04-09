@@ -1,0 +1,120 @@
+*{
+            		box-sizing: border-box;
+            	}
+                body{
+                    font-family: 'Courier New', Courier, monospace;
+					color: black;
+					font-size: 20px;
+					background-image: url("../Pictures/bg.png");
+					background-repeat: no-repeat;
+					background-size: cover;
+					background-attachment: fixed;
+                }
+				#border{
+					border-left: 2px solid #F68E13;
+					margin-left: 14px;
+				}
+				.michaelweb h1{
+					text-transform: uppercase;
+					color: #6E6E6E;
+
+				}
+				.michael{
+					font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+					color: rgb(73, 73, 116);
+					font-size: 40px;
+				}
+				.web{
+					font-family: Georgia, 'Times New Roman', Times, serif;
+					color: rgba(247, 203, 8, 0.842);
+					font-size: 40px;
+				}
+
+				#border button {
+					border: none;
+					outline: none;
+					background: #F68E13;
+					color: #fff;
+					padding: 12px 30px;
+					text-transform: uppercase;
+					font-size: 16px;
+					border-radius: 20px;
+					transition: .4s;
+					text-decoration: none;
+				}
+
+				#border button:hover{
+					background: #d87704;
+					transition: .4s;
+				}
+				#border button a{
+					border: none;
+					outline: none;
+					background: #F68E13;
+					color: #fff;
+					padding: 12px 30px;
+					text-transform: uppercase;
+					font-size: 16px;
+					border-radius: 20px;
+					transition: .4s;
+					text-decoration: none;
+				}
+
+				#border button a:hover{
+					background: #d87704;
+					transition: .4s;
+				}
+            	.menu{
+            		float: left;
+            		width: 20%;
+            	}
+				.menu .active{
+					color: #F68E13;
+				}
+				.menu a{
+					display: block;
+					line-height: 70px;
+					padding: 0 30px;
+					text-decoration: none;
+					color: #6E6E6E;
+					text-decoration: none;
+					color: #6E6E6E;
+					text-transform: uppercase;
+				}
+				.menu a:hover{
+					color:#F68E13;
+				}
+            	.menuitem{
+            		padding: 8px;
+            		margin-top: 7px;
+            		border-bottom: 1px solid #f1f1f1;
+            	}
+            	.main{
+            		float: left;
+            		width: 60%;
+            		padding: 0 20px;
+            		overflow: hidden;
+            	}
+            	.right{
+            		background-color: lightblue;
+            		float: left;
+            		width: 20%;
+            		padding: 10px 15px;
+            		margin-top: 7px;
+            	}
+            	@media only screen and (max-width:800px) {
+					/* For tablets */
+					.main{
+						width: 80%;
+						padding: 0;
+					}
+					.right{
+						width: 100%;
+					}
+				}
+				@media only screen and (max-width:500px) {
+						/* For mobile phone*/
+						.menu, .main, .right{
+							width: 100%;
+						}
+				}
