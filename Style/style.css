@@ -105,8 +105,13 @@ body{
 	margin-top: 7px;
 }
 .phone{
-	display:  hidden;
-}
+		display: block;
+		color: rgb(234,120,234);
+		align-items: center;
+		width: 100%;
+		text-transform: uppercase;
+	}
+
 @media only screen and (max-width:800px) {
 	/* For tablets */
 	.main{
@@ -139,6 +144,7 @@ body{
 		display: hidden;
 	}
 }
+
 
 
 
