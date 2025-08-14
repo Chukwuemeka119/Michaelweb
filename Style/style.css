@@ -102,6 +102,9 @@ body{
 	padding: 10px 15px;
 	margin-top: 7px;
 }
+#phone{
+	display: none;
+}
 @media only screen and (max-width:800px) {
 	/* For tablets */
 	.main{
@@ -112,7 +115,10 @@ body{
 		width: 100%;
 	}
 @media only screen and (max-width:600px) {
-	/* For tablets */
-	
+	/* For phones */
+	#phone{
+		display: block;
+	}
 }
+
 
