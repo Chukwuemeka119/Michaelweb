@@ -2,7 +2,6 @@
  *{
 
 	box-sizing: border-box;
- border-box;
  }
 body{
 	font-family: Garamond, Georgia, 'Times New Roman', serif;
@@ -140,6 +139,7 @@ body{
 		display: hidden;
 	}
 }
+
 
 
 
