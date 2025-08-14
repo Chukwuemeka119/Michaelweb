@@ -124,8 +124,13 @@ body{
 		color: rgb(234,120,234);
 		align-items: center;
 		width: 100%;
+		text-transform: uppercase;
+	}
+	body {
+		display: hidden;
 	}
 }
+
 
 
 
