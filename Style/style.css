@@ -102,7 +102,7 @@ body{
 	padding: 10px 15px;
 	margin-top: 7px;
 }
-#phone{
+.phone{
 	display: none;
 }
 @media only screen and (max-width:800px) {
@@ -116,9 +116,13 @@ body{
 	}
 @media only screen and (max-width:600px) {
 	/* For phones */
-	#phone{
+	.phone{
 		display: block;
+		color: rgb(234,120,234);
+		align-items: center;
+		width: 100%;
 	}
 }
+
 
 
