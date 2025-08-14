@@ -117,6 +117,16 @@ body{
 	.right{
 		width: 100%;
 	}
+	.phone{
+		display: block;
+		color: rgb(234,120,234);
+		align-items: center;
+		width: 100%;
+		text-transform: uppercase;
+	}
+	body {
+		display: hidden;
+	}
 @media only screen and (max-width:600px) {
 	/* For phones */
 	.phone{
@@ -130,6 +140,7 @@ body{
 		display: hidden;
 	}
 }
+
 
 
 
