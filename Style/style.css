@@ -1,6 +1,9 @@
-*{
+
+ *{
+
 	box-sizing: border-box;
-}
+ border-box;
+ }
 body{
 	font-family: Garamond, Georgia, 'Times New Roman', serif;
 	color: white;
@@ -103,7 +106,7 @@ body{
 	margin-top: 7px;
 }
 .phone{
-	display: none;
+	display:  hidden;
 }
 @media only screen and (max-width:800px) {
 	/* For tablets */
@@ -123,6 +126,7 @@ body{
 		width: 100%;
 	}
 }
+
 
 
 
