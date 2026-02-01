@@ -1,13 +1,18 @@
-const themeToggle = document.getElementById('theme-toggle');
-themeToggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-});
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    target.scrollIntoView({ behavior: 'smooth' });
-  });
-});
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+document.getElementById('next').onclick = () => {
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+};
+
+document.getElementById('prev').onclick = () => {
+  slides[current].classList.remove('active');
+  current = (current - 1 + slides.length) % slides.length;
+  slides[current].classList.add('active');
+};
+
+// Show first slide
+slides[current].classList.add('active');

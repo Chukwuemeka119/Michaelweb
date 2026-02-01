@@ -71,16 +71,39 @@ When he's not coding or brainstorming new ideas, Osita is likely learning someth
             <br>
             <p>or <br> Contact Us at : 08065516220 <br> For more enquires</p>
             <br>
-            <p>This website isn't your style? click <a href="new/t.html">here</a> </p>
+            <p>This website isn't your style? click <a href="new/t.html">here</a> or
+                 <a href="h.html" target="_blank">here</a> for our pics </p>
             
         </section>
+</section>
     </main>
-    <footer>
-        <p>&copy; 2025 Michael Web</p>
+    <footer>     
+          <p>Michael Web's Production <br>All Rights Reserved <br>&copy; 2026 Michael Web</p>
     </footer>
     
 
 <script src="JavaScript/script.js"></script>
+<script>
+    
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+document.getElementById('next').onclick = () => {
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+};
+
+document.getElementById('prev').onclick = () => {
+  slides[current].classList.remove('active');
+  current = (current - 1 + slides.length) % slides.length;
+  slides[current].classList.add('active');
+};
+
+// Show first slide
+slides[current].classList.add('active');
+
+</script>
 </body>
 </html>
 

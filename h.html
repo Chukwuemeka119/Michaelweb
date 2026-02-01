@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Michael Web's Wallpaper</title>
+    <link rel="shortcut icon" href="Pictures/favicon.ico" type="image/x-icon">
+    <style>
+        .slideshow-container {
+  position: relative;
+  max-width: 600px; /* adjust width as needed */
+  height: 400px; /* adjust height as needed */
+  overflow: hidden;
+  margin: auto;
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#prev, #next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 1rem;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#prev {
+  left: 0;
+}
+
+#next {
+  right: 0;
+}
+section{
+    align-items: center;
+}
+.indicators {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  margin: 0 5px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.indicator.active {
+  background: white;
+}
+
+
+    </style>
+    <link rel="stylesheet" href="Style/style.css">
+</head>
+<body>
+       <section id="Gallary"> 
+  <div class="slideshow-container"> 
+    <div class="slide active"><img src="Pictures/Mi.jpg" alt="Pics"></div>
+    <div class="slide"><img src="Pictures/1753007355247.jpg" alt="Pics"></div>
+    <div class="slide"><img src="Pictures/file_00000000ac0071f4ad8650d05fcdf376 (1).png" alt="Pics"></div>
+    <div class="slide"><img src="Pictures/IMG_20251223_122004_330.jpg" alt="Pics"></div>
+    <div class="slide"><img src="Pictures/WIN_20251222_21_50_28_Pro.jpg" alt="Pics"></div>
+    <button id="prev">Prev</button>
+    <button id="next">Next</button>
+  </div>
+  <div class="indicators">
+  <span class="indicator active" data-index="0"></span>
+  <span class="indicator" data-index="1"></span>
+  <span class="indicator" data-index="2"></span>
+  <span class="indicator" data-index="3"></span>
+  <span class="indicator" data-index="4"></span>
+</div>
+</section>
+ <footer>     
+          <p>Michael Web's Production <br>All Rights Reserved <br>&copy; 2026 Michael Web</p>
+    </footer>
+    
+<script>
+    
+const slides = document.querySelectorAll('.slide');
+let current = 0;
+
+function showSlide(index) {
+  slides[current].classList.remove('active');
+  document.querySelector(`.indicator[data-index="${current}"]`).classList.remove('active');
+  current = index;
+  slides[current].classList.add('active');
+  document.querySelector(`.indicator[data-index="${current}"]`).classList.add('active');
+}
+
+document.querySelectorAll('.indicator').forEach(ind => {
+  ind.onclick = () => showSlide(parseInt(ind.dataset.index));
+});
+
+document.getElementById('next').onclick = () => {
+  slides[current].classList.remove('active');
+  current = (current + 1) % slides.length;
+  slides[current].classList.add('active');
+};
+
+document.getElementById('prev').onclick = () => {
+  slides[current].classList.remove('active');
+  current = (current - 1 + slides.length) % slides.length;
+  slides[current].classList.add('active');
+};
+
+// Show first slide
+slides[current].classList.add('active');
+
+//autoplay
+setInterval(()=>{
+    showSlide((current + 1) % slides.length);
+},3000);
+</script>
+</body>
+</html>
