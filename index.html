@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,17 +5,277 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Michael Web &trade; </title>
     <link rel="icon" type="image/x-icon" href="Pictures/Mi.jpg">
+    <style>
+/* Global Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <link rel="stylesheet" href="Style/style.css">
-    <script>
-        function showMessage(){
-         alert(" Message not sent. Please try again later or contact us . ")   
-        }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    background: #2c3e50;
+    color: #ecf0f1;
+    transition: background 0.3s, color 0.3s;
+}
 
-    </script>
-    <script src="JavaScript/script.js"></script>
+header {
+    background: #1a1d23;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+header nav li {
+    margin: 0 1rem;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+header a:hover {
+    color: #f1c40f;
+}
+
+.hero {
+    background: linear-gradient(to bottom, #3498db, #2980b9);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    animation: fadeIn 1s ease-out;
+    position: relative;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#three-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.card {
+    background: #ecf0f1;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-transform: capitalize;
+    cursor: pointer;
+    color: #2c3e50;
+    animation: pulse 2s infinite;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.hero h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: pulse 2s infinite;
+    background: linear-gradient(to right, #3498db, #f1c40f, #e74c3c);
+    background-clip: 0;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+}
+
+#contact-form input, #contact-form textarea {
+    width: 100%;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#contact-form button {
+    background: #3498db;
+    color: #fff;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#contact-form button:hover {
+    background: #2980b9;
+}
+
+footer {
+    background: #1a1d23;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    transition: background 0.3s;
+}
+
+.dark-mode {
+    background: #2c3e50;
+    color: #fff;
+}
+
+.dark-mode .hero {
+    background: linear-gradient(to bottom, #1a1a2e, #2c3e50);
+}
+
+.dark-mode header {
+    background: #1a1a2e;
+}
+
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #3498db;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    display: none;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1d23;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.loader::after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    border: 5px solid #3498db;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.skip-to-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px;
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    z-index: 1000;
+}
+
+.high-contrast-mode {
+    background-color: #39373770;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+    .hero {
+        padding: 3rem 1rem;
+    }
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        background: #1a1d23;
+        padding: 1rem;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        display: none;
+    }
+    header nav ul li {
+        margin: 0.5rem 0;
+    }
+}
+
+@media (max-width: 480px) {
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    header nav li {
+        margin: 0.5rem;
+    }
+}
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
 </head>
-<body>
+<body class="high-contrast-toggle">
+    <div class="Loader"></div>
     <header>
         <nav>
             <ul>
@@ -24,6 +283,14 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><button id="dark-mode-toggle">Dark Mode</button></li>
+                
+
+
+<br><br>
+
+<!-- Add a high contrast mode toggle -->
+<button id="high-contrast-toggle">High Contrast Mode</button>
             </ul>
         </nav>
     </header>
@@ -32,8 +299,9 @@
             <h1>Welcome</h1>
             <p>to</p>
             <h1>  Michael  Web </h1>
+            <div id="three-container"></div>
         </section>
-        <section id="about">
+        <section id="about" id="main-content">
             <h1>About Us</h1>
             <h2> Michael Web </h2>
             <p> 
@@ -62,49 +330,135 @@ When he's not coding or brainstorming new ideas, Osita is likely learning someth
         </section>
         <section id="contact">
             <h2>Get In Touch</h2>
-            <form id="contact-form" >
-                <input type="text" name="name" placeholder="Name" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" placeholder="Message" required></textarea>
-                <button type="submit" onclick="showMessage()">Get in touch</button>
+            <form id="contact-form" action="mailto:michaelweb030@gmail.com" method="post" enctype="text/plain">
+                <input type="text" name="Name" placeholder="Name" required>
+                <input type="email" name="E-mail" placeholder="Email" required>
+                <textarea name="Message" placeholder="Message" required></textarea>
+                <button type="submit">Get in touch</button>
             </form>
             <br>
-            <p>or <br> Contact Us at : 08065516220 <br> For more enquires</p>
+            <p>or <br> Contact Us at : 08033441185 <br> For more enquires</p>
             <br>
-            <p>This website isn't your style? click <a href="new/t.html">here</a> or
-                 <a href="h.html" target="_blank">here</a> for our pics </p>
-            
         </section>
-</section>
     </main>
     <footer>     
           <p>Michael Web's Production <br>All Rights Reserved <br>&copy; 2026 Michael Web</p>
     </footer>
-    
+    <button id="back-to-top">Back to Top</button>
 
-<script src="JavaScript/script.js"></script>
-<script>
-    
-const slides = document.querySelectorAll('.slide');
-let current = 0;
+    <script defer>
+// Get elements
+const header = document.querySelector('header');
+const hero = document.querySelector('.hero');
+const backToTopButton = document.getElementById('back-to-top');
+const contactForm = document.getElementById('contact-form');
+const threeContainer = document.getElementById('three-container');
 
-document.getElementById('next').onclick = () => {
-  slides[current].classList.remove('active');
-  current = (current + 1) % slides.length;
-  slides[current].classList.add('active');
-};
+// Create a canvas element
+const canvas = document.createElement('canvas');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+threeContainer.appendChild(canvas);
 
-document.getElementById('prev').onclick = () => {
-  slides[current].classList.remove('active');
-  current = (current - 1 + slides.length) % slides.length;
-  slides[current].classList.add('active');
-};
+// Create a Three.js scene
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    antialias: true
+});
 
-// Show first slide
-slides[current].classList.add('active');
+// Create a 3D object
+const geometry = new THREE.SphereGeometry(1, 32, 32);
+const material = new THREE.MeshBasicMaterial({ color: 0x3498db });
+const sphere = new THREE.Mesh(geometry, material);
+scene.add(sphere);
 
+// Animate the scene
+function animate() {
+    requestAnimationFrame(animate);
+    sphere.rotation.x += 0.01;
+    sphere.rotation.y += 0.01;
+    renderer.render(scene, camera);
+}
+
+// Set up camera
+camera.position.z = 5;
+renderer.setSize(window.innerWidth, window.innerHeight);
+animate();
+
+// Add event listeners
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        header.style.background = '#1a1a2e';
+        backToTopButton.style.display = 'block';
+    } else {
+        header.style.background = '#1a1d23';
+        backToTopButton.style.display = 'none';
+    }
+});
+
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    showMessage();
+});
+
+// Dark mode toggle
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+darkModeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+});
+
+// Show message function
+function showMessage() {
+    alert('Message sent successfully!');
+}
+
+// Mobile menu bar
+const menuToggle = document.createElement('button');
+menuToggle.textContent = 'Menu';
+menuToggle.style.position = 'fixed';
+menuToggle.style.top = '20px';
+menuToggle.style.left = '20px';
+menuToggle.style.padding = '10px';
+menuToggle.style.border = 'none';
+menuToggle.style.borderRadius = '5px';
+menuToggle.style.cursor = 'pointer';
+document.body.appendChild(menuToggle);
+
+const navList = document.querySelector('header nav ul');
+menuToggle.addEventListener('click', () => {
+    navList.style.display = navList.style.display === 'block' ? 'none' : 'block';
+});
+
+// Resize renderer on window resize
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+
+// Add a loading animation
+const loader = document.createElement('div');
+loader.classList.add('loader');
+document.body.appendChild(loader);
+
+// Hide the loader when the page is loaded
+window.addEventListener('load', () => {
+    loader.style.display = 'none';
+});
+
+// High contrast mode toggle
+const highContrastToggle = document.getElementById('high-contrast-toggle');
+highContrastToggle.addEventListener('click', () => {
+    document.body.classList.toggle('high-contrast-mode');
+});
 </script>
 </body>
 </html>
-
-
