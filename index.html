@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Michael Web, Michael, Web, Web site Design, Inventory Management System">
     <title> Michael Web &trade; </title>
     <link rel="icon" type="image/x-icon" href="Pictures/Mi.jpg">
     <style>
@@ -235,6 +236,56 @@ footer {
     color: #fff;
 }
 
+#gallery {
+  padding: 2rem;
+  text-align: center;
+}
+
+.gallery-container {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.slideshow {
+  position: relative;
+  height: 400px;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.prev-slide, .next-slide {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.prev-slide {
+  left: 0;
+}
+
+.next-slide {
+  right: 0;
+}
+
 @media (max-width: 768px) {
     .grid {
         grid-template-columns: 1fr;
@@ -283,6 +334,7 @@ footer {
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
+                <li><a href="#gallery">Inventory Management System</a></li>
                 <li><button id="dark-mode-toggle">Dark Mode</button></li>
                 
 
@@ -340,6 +392,19 @@ When he's not coding or brainstorming new ideas, Osita is likely learning someth
             <p>or <br> Contact Us at : 08033441185 <br> For more enquires</p>
             <br>
         </section>
+        <section id="gallery">
+  <h2>StockSavvy 🚀</h2>
+  <div class="gallery-container">
+    <div class="slideshow">
+      <img src="stock-savvy-1.png" alt="StockSavvy Screenshot 1" class="slide active">
+      <img src="stock-savvy.png" alt="StockSavvy Screenshot 2" class="slide">
+      <!-- Add more images here -->
+    </div>
+    <p>StockSavvy is the game-changing inventory management solution that empowers business owners to take control, save time, and boost profits 🚀. Contact Us to get Yours</p>
+    <button class="prev-slide">❮</button>
+    <button class="next-slide">❯</button>
+  </div>
+</section>
     </main>
     <footer>     
           <p>Michael Web's Production <br>All Rights Reserved <br>&copy; 2026 Michael Web</p>
@@ -347,6 +412,36 @@ When he's not coding or brainstorming new ideas, Osita is likely learning someth
     <button id="back-to-top">Back to Top</button>
 
     <script defer>
+
+        const slideshow = document.querySelector('.slideshow');
+const slides = document.querySelectorAll('.slide');
+const prevButton = document.querySelector('.prev-slide');
+const nextButton = document.querySelector('.next-slide');
+
+let currentSlide = 0;
+
+function showSlide(index) {
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === index);
+  });
+}
+
+prevButton.addEventListener('click', () => {
+  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+  showSlide(currentSlide);
+});
+
+nextButton.addEventListener('click', () => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+});
+
+// Auto-play slideshow
+setInterval(() => {
+  currentSlide = (currentSlide + 1) % slides.length;
+  showSlide(currentSlide);
+}, 5000);
+
 // Get elements
 const header = document.querySelector('header');
 const hero = document.querySelector('.hero');
