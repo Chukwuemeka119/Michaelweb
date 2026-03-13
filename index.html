@@ -21,6 +21,9 @@ body {
     color: #ecf0f1;
     transition: background 0.3s, color 0.3s;
 }
+#main-content{
+    margin: 2%;
+}
 
 header {
     background: #1a1d23;
@@ -266,6 +269,23 @@ footer {
 .slide.active {
   opacity: 1;
 }
+.ads{
+    margin: 0.5%;
+    padding: 1%;
+    width: 50%;
+    border:  #000;
+    border-radius: 0.5%;
+    background-color: #313e4c;
+    align-items: end;
+}
+.ads :hover{
+     transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.adsh{
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
 .prev-slide, .next-slide {
   position: absolute;
@@ -334,7 +354,6 @@ footer {
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
-                <li><a href="#gallery">Inventory Management System</a></li>
                 <li><button id="dark-mode-toggle">Dark Mode</button></li>
                 
 
@@ -392,20 +411,12 @@ When he's not coding or brainstorming new ideas, Osita is likely learning someth
             <p>or <br> Contact Us at : 08033441185 <br> For more enquires</p>
             <br>
         </section>
-        <section id="gallery">
-  <h2>StockSavvy 🚀</h2>
-  <div class="gallery-container">
-    <div class="slideshow">
-      <img src="stock-savvy-1.png" alt="StockSavvy Screenshot 1" class="slide active">
-      <img src="stock-savvy.png" alt="StockSavvy Screenshot 2" class="slide">
-      <!-- Add more images here -->
-    </div>
-    <p>StockSavvy is the game-changing inventory management solution that empowers business owners to take control, save time, and boost profits 🚀. Contact Us to get Yours</p>
-    <button class="prev-slide">❮</button>
-    <button class="next-slide">❯</button>
-  </div>
-</section>
     </main>
+    
+ <div class="ads">
+  
+    <p> <span class="adsh">StockSavvy🚀</span> <br> <br>StockSavvy is the game-changing inventory management solution that empowers business owners to take control, save time, and boost profits 🚀. Contact Us to get Yours</p>
+ </div>
     <footer>     
           <p>Michael Web's Production <br>All Rights Reserved <br>&copy; 2026 Michael Web</p>
     </footer>
@@ -413,35 +424,7 @@ When he's not coding or brainstorming new ideas, Osita is likely learning someth
 
     <script defer>
 
-        const slideshow = document.querySelector('.slideshow');
-const slides = document.querySelectorAll('.slide');
-const prevButton = document.querySelector('.prev-slide');
-const nextButton = document.querySelector('.next-slide');
-
-let currentSlide = 0;
-
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
-  });
-}
-
-prevButton.addEventListener('click', () => {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
-});
-
-nextButton.addEventListener('click', () => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-});
-
-// Auto-play slideshow
-setInterval(() => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
-}, 5000);
-
+       
 // Get elements
 const header = document.querySelector('header');
 const hero = document.querySelector('.hero');
