@@ -1,542 +1,760 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keywords" content="Michael Web, Michael, Web, Web site Design, Inventory Management System">
-    <title> Michael Web &trade; </title>
-    <link rel="icon" type="image/x-icon" href="Pictures/Mi.jpg">
-    <style>
-/* Global Styles */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Michael Web™ — Osita Emeka Michael</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Epilogue:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    line-height: 1.6;
-    background: #2c3e50;
-    color: #ecf0f1;
-    transition: background 0.3s, color 0.3s;
-}
-#main-content{
-    margin: 2%;
-}
+  :root {
+    --bg: #080810;
+    --surface: #0f0f1a;
+    --border: #1e1e32;
+    --accent: #e8ff47;
+    --accent2: #ff4778;
+    --text: #f0f0f5;
+    --muted: #5a5a7a;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'Epilogue', sans-serif;
+  }
 
-header {
-    background: #1a1d23;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-    height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.3s;
-}
+  html { scroll-behavior: smooth; }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-    flex-wrap: wrap;
-}
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-header nav li {
-    margin: 0 1rem;
-}
-
-header a {
-    color: #fff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-header a:hover {
-    color: #f1c40f;
-}
-
-.hero {
-    background: linear-gradient(to bottom, #3498db, #2980b9);
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    animation: fadeIn 1s ease-out;
-    position: relative;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-#three-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    padding: 2rem;
-    max-width: 1200px;
-    margin: auto;
-}
-
-.card {
-    background: #ecf0f1;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
-    text-transform: capitalize;
-    cursor: pointer;
-    color: #2c3e50;
-    animation: pulse 2s infinite;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-.hero h1 {
-    font-size: 3rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    animation: pulse 2s infinite;
-    background: linear-gradient(to right, #3498db, #f1c40f, #e74c3c);
-    background-clip: 0;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 2rem;
-}
-
-#contact-form input, #contact-form textarea {
-    width: 100%;
-    padding: 1rem;
-    margin: 1rem 0;
-    border: none;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-#contact-form button {
-    background: #3498db;
-    color: #fff;
-    padding: 1rem 2rem;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-#contact-form button:hover {
-    background: #2980b9;
-}
-
-footer {
-    background: #1a1d23;
-    color: #fff;
-    text-align: center;
-    padding: 1rem;
-    transition: background 0.3s;
-}
-
-.dark-mode {
-    background: #2c3e50;
-    color: #fff;
-}
-
-.dark-mode .hero {
-    background: linear-gradient(to bottom, #1a1a2e, #2c3e50);
-}
-
-.dark-mode header {
-    background: #1a1a2e;
-}
-
-#back-to-top {
+  .cursor {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #3498db;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    display: none;
-}
-
-.loader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #1a1d23;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.loader::after {
-    content: '';
-    width: 50px;
-    height: 50px;
-    border: 5px solid #3498db;
-    border-top-color: transparent;
+    width: 10px; height: 10px;
+    background: var(--accent);
     border-radius: 50%;
-    animation: spin 1s linear infinite;
-}
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    position: fixed;
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, opacity 0.2s;
+    opacity: 0.5;
+  }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.35;
+  }
 
-.skip-to-content {
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    background: linear-gradient(to bottom, rgba(8,8,16,0.95), transparent);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    font-weight: 500;
+  }
+
+  .nav-links a:hover { color: var(--accent); }
+
+  #home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
     position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px;
-    background-color: #fff;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 80% 20%, rgba(232,255,71,0.07), transparent),
+      radial-gradient(ellipse 50% 50% at 20% 80%, rgba(255,71,120,0.06), transparent);
+  }
+
+  .hero-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeUp 0.8s 0.2s both;
+  }
+
+  .hero-tag::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 14vw, 14rem);
+    line-height: 0.88;
+    letter-spacing: -0.01em;
+    margin-bottom: 40px;
+    animation: fadeUp 0.8s 0.35s both;
+  }
+
+  .hero-title .outline {
+    -webkit-text-stroke: 2px var(--text);
+    color: transparent;
+  }
+
+  .hero-title .accent-txt { color: var(--accent); }
+
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 40px;
+    animation: fadeUp 0.8s 0.5s both;
+  }
+
+  .hero-desc {
+    max-width: 380px;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  .hero-cta { display: flex; gap: 16px; align-items: center; flex-shrink: 0; }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-body);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 14px 28px;
+    background: var(--accent);
     color: #000;
     text-decoration: none;
-    z-index: 1000;
-}
+    border-radius: 2px;
+    transition: all 0.2s;
+    border: none;
+    cursor: none;
+  }
 
-.high-contrast-mode {
-    background-color: #39373770;
-    color: #fff;
-}
+  .btn-primary:hover { background: #fff; transform: translateY(-2px); }
 
-#gallery {
-  padding: 2rem;
-  text-align: center;
-}
-
-.gallery-container {
-  max-width: 800px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.slideshow {
-  position: relative;
-  height: 400px;
-}
-
-.slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: auto;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.5s;
-}
-
-.slide.active {
-  opacity: 1;
-}
-.ads{
-    margin: 0.5%;
-    padding: 1%;
-    width: 50%;
-    border:  #000;
-    border-radius: 0.5%;
-    background-color: #313e4c;
-    align-items: end;
-}
-.ads :hover{
-     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-.adsh{
+  .btn-ghost {
+    font-size: 0.78rem;
+    font-weight: 500;
     text-transform: uppercase;
-    font-weight: bold;
-}
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+    cursor: none;
+  }
 
-.prev-slide, .next-slide {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
-  color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
+  .btn-ghost:hover { color: var(--text); border-color: var(--text); }
 
-.prev-slide {
-  left: 0;
-}
+  .marquee-wrap {
+    background: var(--accent);
+    padding: 14px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
 
-.next-slide {
-  right: 0;
-}
+  .marquee-track {
+    display: inline-block;
+    animation: marquee 20s linear infinite;
+  }
 
-@media (max-width: 768px) {
-    .grid {
-        grid-template-columns: 1fr;
-    }
-    .hero {
-        padding: 3rem 1rem;
-    }
-    header nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-        background: #1a1d23;
-        padding: 1rem;
-        position: fixed;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        height: 100vh;
-        display: none;
-    }
-    header nav ul li {
-        margin: 0.5rem 0;
-    }
-}
+  .marquee-track span {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: #000;
+    padding: 0 32px;
+  }
 
-@media (max-width: 480px) {
-    header nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.5rem;
-    }
-    header nav li {
-        margin: 0.5rem;
-    }
-}
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  section { padding: 120px 48px; }
+
+  .section-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    max-width: 60px;
+    height: 1px;
+    background: var(--accent);
+    opacity: 0.5;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 7rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    margin-bottom: 60px;
+  }
+
+  #about { background: var(--surface); }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-text p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--muted);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+
+  .about-text p strong { color: var(--text); font-weight: 500; }
+
+  .about-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 40px;
+    position: sticky;
+    top: 100px;
+  }
+
+  .about-card-name {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .about-card-role {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent);
+    margin-bottom: 28px;
+  }
+
+  .about-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+  }
+
+  .about-stat:last-child { border-bottom: none; }
+  .about-stat .label { color: var(--muted); }
+  .about-stat .val { color: var(--text); font-weight: 500; }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2px;
+  }
+
+  .service-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s, transform 0.5s, background 0.3s;
+  }
+
+  .service-card.visible { opacity: 1; transform: translateY(0); }
+  .service-card:hover { background: #13132a; }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+
+  .service-card:hover::before { transform: scaleX(1); }
+
+  .service-num {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: 20px;
+    transition: color 0.3s;
+  }
+
+  .service-card:hover .service-num { color: var(--accent); opacity: 0.3; }
+
+  .service-title {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 14px;
+  }
+
+  .service-desc { font-size: 0.85rem; line-height: 1.7; color: var(--muted); font-weight: 300; }
+
+  .service-badge {
+    display: inline-block;
+    margin-top: 20px;
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 4px 10px;
+    border: 1px solid var(--border);
+    color: var(--muted);
+    border-radius: 2px;
+  }
+
+  .spotlight {
+    margin: 0 48px;
+    background: var(--accent);
+    border-radius: 4px;
+    padding: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .spotlight::before {
+    content: 'STOCKSAVVY';
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-display);
+    font-size: 8rem;
+    color: rgba(0,0,0,0.07);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .spotlight-text h3 { font-family: var(--font-display); font-size: 3rem; color: #000; line-height: 1; margin-bottom: 12px; }
+  .spotlight-text p { font-size: 0.9rem; color: rgba(0,0,0,0.6); max-width: 420px; line-height: 1.6; }
+
+  .spotlight-rocket { font-size: 4rem; flex-shrink: 0; animation: float 3s ease-in-out infinite; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  #contact { background: var(--surface); }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .contact-big { font-family: var(--font-display); font-size: clamp(3rem, 6vw, 5.5rem); line-height: 0.95; margin-bottom: 32px; }
+  .contact-big .line2 { -webkit-text-stroke: 1.5px var(--muted); color: transparent; }
+
+  .contact-info { margin-top: 40px; display: flex; flex-direction: column; gap: 0; }
+
+  .contact-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact-row:last-child { border-bottom: none; }
+
+  .contact-row .icon {
+    width: 36px; height: 36px;
+    background: var(--border);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-row a { color: var(--text); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+  .contact-row a:hover { color: var(--accent); }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-field { display: flex; flex-direction: column; gap: 8px; }
+
+  .form-field label {
+    font-size: 0.62rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+
+  .form-field input, .form-field textarea {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 14px 16px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+    resize: none;
+  }
+
+  .form-field input:focus, .form-field textarea:focus { border-color: var(--accent); }
+  .form-field input::placeholder, .form-field textarea::placeholder { color: var(--muted); }
+
+  footer {
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-logo { font-family: var(--font-display); font-size: 1.2rem; color: var(--accent); }
+  .footer-copy { font-size: 0.72rem; color: var(--muted); letter-spacing: 0.05em; }
+
+  .back-top {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    cursor: none;
+  }
+
+  .back-top:hover { color: var(--accent); }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 20px 24px; }
+    .nav-links { display: none; }
+    #home { padding: 0 24px 60px; }
+    section { padding: 80px 24px; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-card { position: static; }
+    .hero-bottom { flex-direction: column; align-items: flex-start; }
+    .spotlight { margin: 0 24px; padding: 40px 32px; flex-direction: column; }
+    footer { padding: 32px 24px; flex-direction: column; gap: 16px; text-align: center; }
+  }
+</style>
 </head>
-<body class="high-contrast-toggle">
-    <div class="Loader"></div>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><button id="dark-mode-toggle">Dark Mode</button></li>
-                
+<body>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
 
-<br><br>
+<nav>
+  <a href="#home" class="nav-logo">MW™</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn-primary" style="padding:10px 20px;font-size:0.7rem">Hire Me</a>
+</nav>
 
-<!-- Add a high contrast mode toggle -->
-<button id="high-contrast-toggle">High Contrast Mode</button>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="home" class="hero">
-            <h1>Welcome</h1>
-            <p>to</p>
-            <h1>  Michael  Web </h1>
-            <div id="three-container"></div>
-        </section>
-        <section id="about" id="main-content">
-            <h1>About Us</h1>
-            <h2> Michael Web </h2>
-            <p> 
-                Michael Web is a cutting-edge digital platform that embodies the creative vision of Osita Emeka Michael, a talented and innovative web developer. With a passion for crafting intuitive and engaging online experiences, Osita has poured his expertise and heart into building Michael Web as a showcase of his skills and a testament to his dedication to the craft.
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-tag">Web Developer & Digital Creator</div>
+  <h1 class="hero-title">
+    <span class="outline">MICHAEL</span><br>
+    <span class="accent-txt">WEB™</span>
+  </h1>
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      Crafting <strong style="color:var(--text)">intuitive, elegant</strong> digital experiences that leave a lasting impression. Based in Abuja, Nigeria — building for the world.
+    </p>
+    <div class="hero-cta">
+      <a href="#services" class="btn-primary">View Services ↓</a>
+      <a href="#about" class="btn-ghost">About Me</a>
+    </div>
+  </div>
+</section>
 
-                Through sleek design, seamless functionality, and a focus on user-centric solutions, Michael Web aims to deliver an unparalleled online presence for individuals and businesses alike. Whether you're looking to establish a strong digital footprint or elevate your existing online presence, Michael Web is poised to help you achieve your goals with style and sophistication.
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Web Design</span><span>★</span>
+    <span>Web Tutorials</span><span>★</span>
+    <span>Microsoft 365</span><span>★</span>
+    <span>Video Editing</span><span>★</span>
+    <span>Inventory Solutions</span><span>★</span>
+    <span>Digital Presence</span><span>★</span>
+    <span>Web Design</span><span>★</span>
+    <span>Web Tutorials</span><span>★</span>
+    <span>Microsoft 365</span><span>★</span>
+    <span>Video Editing</span><span>★</span>
+    <span>Inventory Solutions</span><span>★</span>
+    <span>Digital Presence</span><span>★</span>
+  </div>
+</div>
 
-                With a keen eye for detail and a commitment to staying at the forefront of web development trends, Osita continues to push the boundaries of what's possible with Michael Web, ensuring that every project is a masterpiece that leaves a lasting impression. </p>
-            <h2>Osita Emeka - Founder Michael Web</h2>
-            <p> 
-Osita Emeka Michael is a driven and innovative web developer with a passion for crafting exceptional digital experiences. With a solid foundation in Information Technology, courtesy of Valor Information Technologies, Osita has honed his skills in web development and continues to push the boundaries of creativity and innovation.
+<section id="about">
+  <div class="section-label">About</div>
+  <h2 class="section-title">WHO<br><span style="-webkit-text-stroke:2px var(--muted);color:transparent">I AM</span></h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p><strong>Michael Web</strong> is a cutting-edge digital platform built by Osita Emeka Michael — a passionate web developer dedicated to crafting intuitive and engaging online experiences.</p>
+      <p>Through sleek design, seamless functionality, and a focus on user-centric solutions, Michael Web delivers an unparalleled online presence for individuals and businesses alike. Whether you're looking to establish a strong digital footprint or elevate your existing one, Michael Web is ready.</p>
+      <p>With a keen eye for detail and commitment to staying at the forefront of web development trends, every project is a <strong>masterpiece</strong> that leaves a lasting impression.</p>
+    </div>
+    <div class="about-card">
+      <div class="about-card-name">Osita<br>Emeka</div>
+      <div class="about-card-role">Founder & Developer — Michael Web</div>
+      <div class="about-stat"><span class="label">Background</span><span class="val">Information Technology</span></div>
+      <div class="about-stat"><span class="label">Training</span><span class="val">Valor Info Technologies</span></div>
+      <div class="about-stat"><span class="label">Location</span><span class="val">Abuja, Nigeria</span></div>
+      <div class="about-stat"><span class="label">Focus</span><span class="val">Web Dev & Digital Solutions</span></div>
+      <div class="about-stat"><span class="label">Status</span><span class="val" style="color:var(--accent)">● Available for work</span></div>
+    </div>
+  </div>
+</section>
 
-As the mastermind behind Michael Web, Osita brings his unique perspective and expertise to every project, ensuring that each digital solution is tailored to meet the needs of his clients. His strong work ethic, attention to detail, and commitment to excellence have earned him recognition as a talented and forward-thinking developer.
+<section id="services">
+  <div class="section-label">Services</div>
+  <h2 class="section-title">WHAT<br><span style="-webkit-text-stroke:2px var(--muted);color:transparent">I DO</span></h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-title">Web Design</div>
+      <p class="service-desc">Beautiful, classic and fully responsive websites built to your exact specification. Every pixel crafted with purpose.</p>
+      <span class="service-badge">Available Now</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-title">Web Tutorials</div>
+      <p class="service-desc">Web design and management tutorials for kids, teens, and adults. Because technology has no age limit.</p>
+      <span class="service-badge">Available Now</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-title">Microsoft 365</div>
+      <p class="service-desc">Master Word, PowerPoint, and Excel all in one place. Professional training that boosts your productivity.</p>
+      <span class="service-badge">Available Now</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04</div>
+      <div class="service-title">Video Editing</div>
+      <p class="service-desc">Stunning video edits for birthdays, presentations, and filming. Your moments deserve to look extraordinary.</p>
+      <span class="service-badge">Available Now</span>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05</div>
+      <div class="service-title">Video Tutorials</div>
+      <p class="service-desc">Learn professional video editing techniques from the ground up, at your own pace.</p>
+      <span class="service-badge" style="color:var(--accent);border-color:var(--accent)">Coming Soon</span>
+    </div>
+  </div>
+</section>
 
-When he's not coding or brainstorming new ideas, Osita is likely learning something new or exploring the latest trends in tech. With a bright future ahead, Osita Emeka Michael is a name to watch in the world of web development. </p>
-        </section>
-        <section id="services">
-            <h2>Services</h2>
-            <div class="grid">
-                <div class="card"> <h2>Web Design.</h2> <br>Michael Web offers beatiful, classic and responsive website based on the specification of our clients </div>
-                <div class="card"> <h2>Tutorials In Web Design and Management.</h2> <br>Michael Web offers tutorials on web design and web management for kids, teens and Adult. no matter what age group technology is not to old for you.  </div>
-                <div class="card"> <h2>Microsoft 365. </h2> <br>learn microsoft Word, powerPoint, excel all in one place. </div>
-                <div class="card"> <h2> Video Editing </h2> <br> We produce beatiful video edits for your birthday, presentation, filming etc. </div>
-                <div class="card"> <h2> Video Editing Tutorials </h2> <br><h4> Coming Soon... </h4></div>
-            </div>
-        </section>
-        <section id="contact">
-            <h2>Get In Touch</h2>
-            <form id="contact-form" action="mailto:michaelweb030@gmail.com" method="post" enctype="text/plain">
-                <input type="text" name="Name" placeholder="Name" required>
-                <input type="email" name="E-mail" placeholder="Email" required>
-                <textarea name="Message" placeholder="Message" required></textarea>
-                <button type="submit">Get in touch</button>
-            </form>
-            <br>
-            <p>or <br> Contact Us at : 08033441185 <br> For more enquires</p>
-            <br>
-        </section>
-    </main>
-    
- <div class="ads">
-  
-    <p> <span class="adsh">StockSavvy🚀</span> <br> <br>StockSavvy is the game-changing inventory management solution that empowers business owners to take control, save time, and boost profits 🚀. Contact Us to get Yours</p>
- </div>
-    <footer>     
-          <p>Michael Web's Production <br>All Rights Reserved <br>&copy; 2026 Michael Web</p>
-    </footer>
-    <button id="back-to-top">Back to Top</button>
+<div class="spotlight">
+  <div class="spotlight-text">
+    <h3>StockSavvy 🚀</h3>
+    <p>The game-changing inventory management solution that empowers business owners to take control, save time, and boost profits. Contact us to get yours today.</p>
+    <a href="#contact" class="btn-primary" style="display:inline-flex;margin-top:24px">Get StockSavvy →</a>
+  </div>
+  <div class="spotlight-rocket">🚀</div>
+</div>
 
-    <script defer>
+<section id="contact">
+  <div class="section-label">Contact</div>
+  <h2 class="section-title">LET'S<br><span style="-webkit-text-stroke:2px var(--muted);color:transparent">TALK</span></h2>
+  <div class="contact-grid">
+    <div>
+      <div class="contact-big">GET IN<br><span class="line2">TOUCH</span></div>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;max-width:360px">Ready to build something remarkable? Reach out and let's create your digital presence together.</p>
+      <div class="contact-info">
+        <div class="contact-row">
+          <div class="icon">📞</div>
+          <div>
+            <div style="font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px">Phone</div>
+            <a href="tel:08033441185">08033441185</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="icon">📍</div>
+          <div>
+            <div style="font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px">Location</div>
+            <span style="color:var(--text);font-weight:500">Abuja, Nigeria</span>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="icon">🌐</div>
+          <div>
+            <div style="font-size:0.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:2px">Web</div>
+            <a href="https://chukwuemeka119.github.io/Michaelweb">michaelweb.dev</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form class="contact-form" onsubmit="handleContact(event)">
+      <div class="form-field">
+        <label>Your Name</label>
+        <input type="text" id="cf-name" placeholder="John Doe" required>
+      </div>
+      <div class="form-field">
+        <label>Email or Phone</label>
+        <input type="text" id="cf-contact" placeholder="your@email.com" required>
+      </div>
+      <div class="form-field">
+        <label>Message</label>
+        <textarea id="cf-message" rows="5" placeholder="Tell me about your project..." required></textarea>
+      </div>
+      <button type="submit" class="btn-primary" style="width:100%;justify-content:center">Send Message →</button>
+    </form>
+  </div>
+</section>
 
-       
-// Get elements
-const header = document.querySelector('header');
-const hero = document.querySelector('.hero');
-const backToTopButton = document.getElementById('back-to-top');
-const contactForm = document.getElementById('contact-form');
-const threeContainer = document.getElementById('three-container');
+<footer>
+  <div class="footer-logo">MW™</div>
+  <div class="footer-copy">© 2026 Michael Web's Production. All Rights Reserved.</div>
+  <a href="#home" class="back-top">↑ Back to Top</a>
+</footer>
 
-// Create a canvas element
-const canvas = document.createElement('canvas');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-threeContainer.appendChild(canvas);
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  const ring   = document.getElementById('cursor-ring');
+  let mx = 0, my = 0, rx = 0, ry = 0;
 
-// Create a Three.js scene
-const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-const renderer = new THREE.WebGLRenderer({
-    canvas: canvas,
-    antialias: true
-});
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    cursor.style.left = mx + 'px';
+    cursor.style.top  = my + 'px';
+  });
 
-// Create a 3D object
-const geometry = new THREE.SphereGeometry(1, 32, 32);
-const material = new THREE.MeshBasicMaterial({ color: 0x3498db });
-const sphere = new THREE.Mesh(geometry, material);
-scene.add(sphere);
+  (function animateRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(animateRing);
+  })();
 
-// Animate the scene
-function animate() {
-    requestAnimationFrame(animate);
-    sphere.rotation.x += 0.01;
-    sphere.rotation.y += 0.01;
-    renderer.render(scene, camera);
-}
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = cursor.style.height = '18px';
+      ring.style.width = ring.style.height = '56px';
+      ring.style.opacity = '0.8';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = cursor.style.height = '10px';
+      ring.style.width = ring.style.height = '36px';
+      ring.style.opacity = '0.5';
+    });
+  });
 
-// Set up camera
-camera.position.z = 5;
-renderer.setSize(window.innerWidth, window.innerHeight);
-animate();
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
 
-// Add event listeners
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        header.style.background = '#1a1a2e';
-        backToTopButton.style.display = 'block';
-    } else {
-        header.style.background = '#1a1d23';
-        backToTopButton.style.display = 'none';
-    }
-});
+  document.querySelectorAll('.service-card').forEach(card => observer.observe(card));
 
-backToTopButton.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-contactForm.addEventListener('submit', (e) => {
+  // Contact → WhatsApp
+  function handleContact(e) {
     e.preventDefault();
-    showMessage();
-});
-
-// Dark mode toggle
-const darkModeToggle = document.getElementById('dark-mode-toggle');
-darkModeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-});
-
-// Show message function
-function showMessage() {
-    alert('Message sent successfully!');
-}
-
-// Mobile menu bar
-const menuToggle = document.createElement('button');
-menuToggle.textContent = 'Menu';
-menuToggle.style.position = 'fixed';
-menuToggle.style.top = '20px';
-menuToggle.style.left = '20px';
-menuToggle.style.padding = '10px';
-menuToggle.style.border = 'none';
-menuToggle.style.borderRadius = '5px';
-menuToggle.style.cursor = 'pointer';
-document.body.appendChild(menuToggle);
-
-const navList = document.querySelector('header nav ul');
-menuToggle.addEventListener('click', () => {
-    navList.style.display = navList.style.display === 'block' ? 'none' : 'block';
-});
-
-// Resize renderer on window resize
-window.addEventListener('resize', () => {
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-});
-
-// Add a loading animation
-const loader = document.createElement('div');
-loader.classList.add('loader');
-document.body.appendChild(loader);
-
-// Hide the loader when the page is loaded
-window.addEventListener('load', () => {
-    loader.style.display = 'none';
-});
-
-// High contrast mode toggle
-const highContrastToggle = document.getElementById('high-contrast-toggle');
-highContrastToggle.addEventListener('click', () => {
-    document.body.classList.toggle('high-contrast-mode');
-});
+    const name    = document.getElementById('cf-name').value;
+    const contact = document.getElementById('cf-contact').value;
+    const message = document.getElementById('cf-message').value;
+    const text = `Hello Michael, I'm ${name} (${contact}). ${message}`;
+    window.open(`https://wa.me/2348033441185?text=${encodeURIComponent(text)}`, '_blank');
+  }
 </script>
 </body>
 </html>
