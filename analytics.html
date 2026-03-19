@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>MW™ Analytics</title>
+<meta name="robots" content="noindex, nofollow"/>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080909;--s1:#0e0f0b;--s2:#141509;
+  --border:#1e2010;--border2:#252817;
+  --y:#d4f500;--y2:rgba(212,245,0,0.1);
+  --text:#e8ead8;--muted:#585c42;--muted2:#3a3e28;
+  --green:#00e676;--red:#ff4545;--blue:#4d9fff;--purple:#a78bfa;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(212,245,0,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(212,245,0,0.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+
+/* LOGIN */
+#login-gate{position:fixed;inset:0;z-index:1000;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+.login-box{width:100%;max-width:380px;background:var(--s1);border:1px solid var(--border2);border-radius:20px;padding:40px 36px;box-shadow:0 40px 80px rgba(0,0,0,0.5)}
+.login-logo{font-family:'Barlow Condensed',sans-serif;font-size:1.6rem;font-weight:900;text-transform:uppercase;letter-spacing:0.05em;color:var(--y);margin-bottom:4px}
+.login-sub{font-size:0.75rem;color:var(--muted);margin-bottom:32px;letter-spacing:0.05em}
+.login-label{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;display:block}
+.login-input{width:100%;background:var(--s2);border:1px solid var(--border2);border-radius:10px;padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:0.9rem;color:var(--text);outline:none;transition:border-color 0.2s,box-shadow 0.2s;margin-bottom:20px}
+.login-input:focus{border-color:var(--y);box-shadow:0 0 0 3px rgba(212,245,0,0.1)}
+.login-btn{width:100%;font-family:'Barlow Condensed',sans-serif;font-size:0.9rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;background:var(--y);color:#000;border:none;border-radius:10px;padding:14px;cursor:pointer;transition:all 0.2s}
+.login-btn:hover{background:#fff;transform:translateY(-1px)}
+.login-error{font-size:0.75rem;color:var(--red);text-align:center;margin-top:12px;display:none}
+
+/* TOPBAR */
+#dashboard{display:none;position:relative;z-index:1}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(8,9,9,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:14px 32px;display:flex;align-items:center;justify-content:space-between}
+.topbar-brand{display:flex;align-items:center;gap:12px}
+.topbar-logo{font-family:'Barlow Condensed',sans-serif;font-size:1rem;font-weight:900;letter-spacing:0.08em;text-transform:uppercase;color:var(--y)}
+.topbar-sep{width:1px;height:16px;background:var(--border2)}
+.topbar-title{font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted)}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.live-dot{display:flex;align-items:center;gap:6px;font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--green)}
+.live-dot::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 2s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+.logout-btn{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:var(--muted);border:1px solid var(--border2);padding:6px 14px;border-radius:6px;cursor:pointer;transition:all 0.2s}
+.logout-btn:hover{border-color:var(--red);color:var(--red)}
+
+/* MAIN */
+.main{max-width:1200px;margin:0 auto;padding:40px 32px}
+.sec-header{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.sec-line{width:20px;height:2px;background:var(--y);flex-shrink:0}
+.sec-title{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted)}
+
+/* STAT CARDS */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:32px}
+.stat-card{background:var(--s1);border:1px solid var(--border);border-radius:14px;padding:22px 20px;position:relative;overflow:hidden;transition:border-color 0.2s}
+.stat-card:hover{border-color:var(--border2)}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.stat-card.yellow::before{background:linear-gradient(90deg,var(--y),transparent)}
+.stat-card.green::before{background:linear-gradient(90deg,var(--green),transparent)}
+.stat-card.blue::before{background:linear-gradient(90deg,var(--blue),transparent)}
+.stat-card.purple::before{background:linear-gradient(90deg,var(--purple),transparent)}
+.stat-label{font-family:'Barlow Condensed',sans-serif;font-size:0.65rem;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.stat-val{font-family:'Barlow Condensed',sans-serif;font-size:2.8rem;font-weight:900;line-height:1;margin-bottom:4px}
+.stat-card.yellow .stat-val{color:var(--y)}
+.stat-card.green  .stat-val{color:var(--green)}
+.stat-card.blue   .stat-val{color:var(--blue)}
+.stat-card.purple .stat-val{color:var(--purple)}
+.stat-sub{font-size:0.72rem;color:var(--muted)}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px}
+
+/* PANEL */
+.panel{background:var(--s1);border:1px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:24px}
+.panel-head{padding:16px 20px;border-bottom:1px solid var(--border);background:var(--s2);display:flex;align-items:center;justify-content:space-between}
+.panel-title{font-family:'Barlow Condensed',sans-serif;font-size:0.78rem;font-weight:800;letter-spacing:0.12em;text-transform:uppercase;color:var(--text)}
+.panel-badge{font-family:'Barlow Condensed',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--y);background:var(--y2);border:1px solid rgba(212,245,0,0.2);padding:3px 9px;border-radius:99px}
+.panel-body{padding:20px}
+
+/* BAR CHART */
+.bar-chart{display:flex;flex-direction:column;gap:12px}
+.bar-row{display:flex;align-items:center;gap:12px}
+.bar-label{font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted);width:90px;flex-shrink:0;text-align:right}
+.bar-track{flex:1;height:8px;background:var(--s2);border-radius:99px;overflow:hidden}
+.bar-fill{height:100%;border-radius:99px;width:0%;transition:width 1s cubic-bezier(0.16,1,0.3,1)}
+.bar-count{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--text);width:28px;flex-shrink:0;text-align:right}
+
+/* DATA ROWS */
+.data-row{display:flex;align-items:flex-start;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--border);gap:16px}
+.data-row:last-child{border-bottom:none}
+.data-key{font-family:'Barlow Condensed',sans-serif;font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);flex-shrink:0}
+.data-val{font-family:'JetBrains Mono',monospace;font-size:0.75rem;color:var(--text);text-align:right;word-break:break-all}
+.data-val.hl{color:var(--y)} .data-val.gn{color:var(--green)} .data-val.mt{color:var(--muted)}
+
+/* VISITORS TABLE */
+.vtable{width:100%;border-collapse:collapse;font-size:0.78rem}
+.vtable th{font-family:'Barlow Condensed',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);background:var(--s2);white-space:nowrap}
+.vtable td{padding:10px 14px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.7rem;word-break:break-all;vertical-align:top}
+.vtable tr:last-child td{border-bottom:none}
+.vtable tr:hover td{background:rgba(212,245,0,0.02)}
+.vtable .vid-cell{color:var(--muted2);font-size:0.62rem}
+.vtable .source-cell{color:var(--green)}
+.vtable .visits-cell{color:var(--y);font-weight:700}
+
+/* PAGEVIEWS TABLE */
+.pvtable{width:100%;border-collapse:collapse;font-size:0.75rem}
+.pvtable th{font-family:'Barlow Condensed',sans-serif;font-size:0.62rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);padding:9px 14px;text-align:left;border-bottom:1px solid var(--border);background:var(--s2)}
+.pvtable td{padding:9px 14px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:0.68rem}
+.pvtable tr:last-child td{border-bottom:none}
+
+.empty{text-align:center;padding:32px 20px;color:var(--muted2);font-family:'Barlow Condensed',sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase}
+.loading{text-align:center;padding:32px;color:var(--muted2);font-family:'JetBrains Mono',monospace;font-size:0.72rem;animation:pulse2 1.5s ease infinite}
+@keyframes pulse2{0%,100%{opacity:0.4}50%{opacity:1}}
+
+.clear-btn{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:transparent;color:var(--red);border:1px solid rgba(255,69,69,0.25);padding:5px 12px;border-radius:6px;cursor:pointer;transition:all 0.2s}
+.clear-btn:hover{background:rgba(255,69,69,0.1)}
+.refresh-btn{font-family:'Barlow Condensed',sans-serif;font-size:0.7rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;background:var(--y2);color:var(--y);border:1px solid rgba(212,245,0,0.25);padding:5px 12px;border-radius:6px;cursor:pointer;transition:all 0.2s}
+.refresh-btn:hover{background:rgba(212,245,0,0.2)}
+
+/* DAILY CHART */
+.daily-chart{display:flex;align-items:flex-end;gap:4px;height:80px;padding:0 4px}
+.daily-bar-wrap{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.daily-bar{width:100%;background:var(--y);border-radius:3px 3px 0 0;min-height:2px;transition:height 0.6s ease;opacity:0.7}
+.daily-bar:hover{opacity:1}
+.daily-bar-label{font-family:'JetBrains Mono',monospace;font-size:0.5rem;color:var(--muted2);white-space:nowrap}
+
+@media(max-width:900px){.stat-grid{grid-template-columns:1fr 1fr}.two-col{grid-template-columns:1fr}.main{padding:24px 16px}.topbar{padding:12px 16px}}
+@media(max-width:500px){.stat-grid{grid-template-columns:1fr 1fr}.stat-val{font-size:2rem}}
+</style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-gate">
+  <div class="login-box">
+    <div class="login-logo">MW™ Analytics</div>
+    <div class="login-sub">Admin access only</div>
+    <label class="login-label">Password</label>
+    <input type="password" class="login-input" id="gate-pass" placeholder="••••••••"/>
+    <button class="login-btn" id="gate-btn">Enter Dashboard →</button>
+    <div class="login-error" id="gate-error">Wrong password. Try again.</div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+  <div class="topbar">
+    <div class="topbar-brand">
+      <div class="topbar-logo">MW™</div>
+      <div class="topbar-sep"></div>
+      <div class="topbar-title">Visitor Analytics</div>
+    </div>
+    <div class="topbar-right">
+      <div class="live-dot">Live</div>
+      <button class="refresh-btn" id="refresh-btn">↻ Refresh</button>
+      <button class="logout-btn" id="logout-btn">Log Out</button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <!-- OVERVIEW STATS -->
+    <div class="sec-header"><div class="sec-line"></div><div class="sec-title">Overview — All Devices</div></div>
+    <div class="stat-grid">
+      <div class="stat-card yellow">
+        <div class="stat-label">Total Pageviews</div>
+        <div class="stat-val" id="stat-pageviews"><span class="loading">…</span></div>
+        <div class="stat-sub">All-time across all devices</div>
+      </div>
+      <div class="stat-card green">
+        <div class="stat-label">Unique Visitors</div>
+        <div class="stat-val" id="stat-visitors"><span class="loading">…</span></div>
+        <div class="stat-sub">Distinct browser IDs</div>
+      </div>
+      <div class="stat-card blue">
+        <div class="stat-label">Returning</div>
+        <div class="stat-val" id="stat-returning"><span class="loading">…</span></div>
+        <div class="stat-sub">Visited more than once</div>
+      </div>
+      <div class="stat-card purple">
+        <div class="stat-label">Today</div>
+        <div class="stat-val" id="stat-today"><span class="loading">…</span></div>
+        <div class="stat-sub">Visits today</div>
+      </div>
+    </div>
+
+    <!-- DAILY + SOURCES -->
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">Daily Visits (Last 7 Days)</div>
+        </div>
+        <div class="panel-body">
+          <div class="daily-chart" id="daily-chart"><div class="loading">Loading…</div></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <div class="panel-title">Traffic Sources</div>
+          <div class="panel-badge" id="sources-badge">—</div>
+        </div>
+        <div class="panel-body">
+          <div class="bar-chart" id="sources-chart"><div class="loading">Loading…</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISITORS TABLE -->
+    <div class="sec-header"><div class="sec-line"></div><div class="sec-title">All Visitors</div></div>
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Visitor Records</div>
+        <div style="display:flex;gap:8px">
+          <div class="panel-badge" id="visitors-badge">—</div>
+        </div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="vtable">
+          <thead>
+            <tr>
+              <th>Visitor ID</th>
+              <th>Visits</th>
+              <th>Source</th>
+              <th>Last Seen</th>
+              <th>First Seen</th>
+              <th>Device</th>
+              <th>Location</th>
+              <th>Last Section</th>
+              <th>Form Data</th>
+            </tr>
+          </thead>
+          <tbody id="visitors-tbody">
+            <tr><td colspan="9"><div class="loading">Loading visitors…</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RECENT PAGEVIEWS -->
+    <div class="sec-header"><div class="sec-line"></div><div class="sec-title">Recent Pageviews</div></div>
+    <div class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Live Feed</div>
+        <div class="panel-badge" id="pv-badge">—</div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="pvtable">
+          <thead>
+            <tr><th>Time</th><th>Visitor</th><th>Source</th><th>Page</th><th>Returning?</th></tr>
+          </thead>
+          <tbody id="pv-tbody">
+            <tr><td colspan="5"><div class="loading">Loading…</div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, get, remove, onValue }
+  from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+const ADMIN_PASSWORD = 'michaelweb2026'; // ← Change this
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAF7q176rxAoCFqhH0Djquhu0MphaUMLyQ",
+  authDomain: "pos-store-29e58.firebaseapp.com",
+  databaseURL: "https://pos-store-29e58-default-rtdb.firebaseio.com",
+  projectId: "pos-store-29e58",
+  storageBucket: "pos-store-29e58.firebasestorage.app",
+  messagingSenderId: "494046387333",
+  appId: "1:494046387333:web:44ef67eeac8e40e4f19dec"
+};
+
+const app = initializeApp(firebaseConfig, "analytics-dash");
+const db  = getDatabase(app);
+
+const $ = id => document.getElementById(id);
+
+// ── LOGIN ─────────────────────────────────────────
+function tryLogin() {
+  if ($('gate-pass').value === ADMIN_PASSWORD) {
+    $('login-gate').style.display = 'none';
+    $('dashboard').style.display = 'block';
+    loadAll();
+  } else {
+    $('gate-error').style.display = 'block';
+    $('gate-pass').value = '';
+    setTimeout(() => $('gate-error').style.display = 'none', 3000);
+  }
+}
+
+$('gate-btn').addEventListener('click', tryLogin);
+$('gate-pass').addEventListener('keydown', e => { if (e.key === 'Enter') tryLogin(); });
+$('logout-btn').addEventListener('click', () => {
+  $('dashboard').style.display = 'none';
+  $('login-gate').style.display = 'flex';
+  $('gate-pass').value = '';
+});
+$('refresh-btn').addEventListener('click', loadAll);
+
+// ── LOAD ALL DATA ─────────────────────────────────
+async function loadAll() {
+  const [visitorsSnap, pageviewsSnap, dailySnap, sourcesSnap] = await Promise.all([
+    get(ref(db, 'analytics/visitors')),
+    get(ref(db, 'analytics/pageviews')),
+    get(ref(db, 'analytics/daily')),
+    get(ref(db, 'analytics/sources')),
+  ]);
+
+  const visitors  = visitorsSnap.val()  || {};
+  const pageviews = pageviewsSnap.val() || {};
+  const daily     = dailySnap.val()     || {};
+  const sources   = sourcesSnap.val()   || {};
+
+  renderStats(visitors, pageviews, daily);
+  renderSources(sources);
+  renderDaily(daily);
+  renderVisitors(visitors);
+  renderPageviews(pageviews);
+}
+
+// ── STATS ─────────────────────────────────────────
+function renderStats(visitors, pageviews, daily) {
+  const vList = Object.values(visitors);
+  const pvList = Object.values(pageviews);
+
+  $('stat-pageviews').textContent = pvList.length || '0';
+  $('stat-visitors').textContent  = vList.length  || '0';
+  $('stat-returning').textContent = vList.filter(v => v.visits > 1).length || '0';
+
+  const today = new Date().toLocaleDateString('en-GB').replace(/\//g,'-');
+  const todayData = daily[today];
+  $('stat-today').textContent = todayData ? (todayData.visits || 0) : '0';
+}
+
+// ── SOURCES CHART ─────────────────────────────────
+function renderSources(sources) {
+  const keys = Object.keys(sources);
+  $('sources-badge').textContent = keys.length + ' source' + (keys.length !== 1 ? 's' : '');
+  if (!keys.length) { $('sources-chart').innerHTML = '<div class="empty">No data yet</div>'; return; }
+
+  const max = Math.max(...Object.values(sources));
+  const colors = { whatsapp:'#25d366',google:'#4285f4',facebook:'#1877f2',instagram:'#e1306c',twitter:'#1da1f2',direct:'#d4f500' };
+  const sorted = keys.sort((a,b) => sources[b] - sources[a]);
+
+  $('sources-chart').innerHTML = sorted.map(k => {
+    const pct = Math.round((sources[k]/max)*100);
+    const color = colors[k] || '#a78bfa';
+    return `<div class="bar-row">
+      <div class="bar-label">${k}</div>
+      <div class="bar-track"><div class="bar-fill" data-w="${pct}" style="background:${color}"></div></div>
+      <div class="bar-count">${sources[k]}</div>
+    </div>`;
+  }).join('');
+
+  setTimeout(() => {
+    document.querySelectorAll('.bar-fill[data-w]').forEach(b => {
+      b.style.width = b.dataset.w + '%';
+    });
+  }, 80);
+}
+
+// ── DAILY CHART ───────────────────────────────────
+function renderDaily(daily) {
+  const days = [];
+  for (let i = 6; i >= 0; i--) {
+    const d = new Date(); d.setDate(d.getDate() - i);
+    const key = d.toLocaleDateString('en-GB').replace(/\//g,'-');
+    const label = d.toLocaleDateString('en-GB', { weekday:'short' });
+    days.push({ key, label, val: daily[key] ? daily[key].visits || 0 : 0 });
+  }
+
+  const max = Math.max(...days.map(d => d.val), 1);
+  $('daily-chart').innerHTML = days.map(d => {
+    const h = Math.max(Math.round((d.val / max) * 64), d.val > 0 ? 4 : 2);
+    return `<div class="daily-bar-wrap">
+      <div class="daily-bar" style="height:${h}px" title="${d.val} visits"></div>
+      <div class="daily-bar-label">${d.label}</div>
+    </div>`;
+  }).join('');
+}
+
+// ── VISITORS TABLE ────────────────────────────────
+function renderVisitors(visitors) {
+  const list = Object.values(visitors).sort((a,b) => new Date(b.lastSeen) - new Date(a.lastSeen));
+  $('visitors-badge').textContent = list.length + ' visitor' + (list.length !== 1 ? 's' : '');
+
+  if (!list.length) {
+    $('visitors-tbody').innerHTML = '<tr><td colspan="9"><div class="empty">No visitors yet</div></td></tr>';
+    return;
+  }
+
+  $('visitors-tbody').innerHTML = list.map(v => {
+    const lastSeen = v.lastSeen ? new Date(v.lastSeen).toLocaleString('en-NG', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' }) : '—';
+    const firstSeen = v.firstSeen ? new Date(v.firstSeen).toLocaleDateString('en-NG', { day:'numeric', month:'short', year:'numeric' }) : '—';
+    const device = v.userAgent ? (v.userAgent.includes('Mobile') ? '📱 Mobile' : '🖥 Desktop') : '—';
+    const formData = v.formData ? Object.entries(v.formData).map(([k,val]) => `${k}: ${val}`).join(' · ') : '—';
+    const shortVid = v.vid ? v.vid.substring(0,14)+'…' : '—';
+    return `<tr>
+      <td class="vid-cell">${shortVid}</td>
+      <td class="visits-cell">${v.visits || 1}</td>
+      <td class="source-cell">${v.source || 'direct'}</td>
+      <td>${lastSeen}</td>
+      <td>${firstSeen}</td>
+      <td>${device} · ${v.screenW||'?'}×${v.screenH||'?'}</td>
+      <td>${v.timezone || '—'}</td>
+      <td>${v.lastSection ? '#'+v.lastSection : '—'}</td>
+      <td style="color:var(--y);font-size:0.65rem">${formData}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── PAGEVIEWS ─────────────────────────────────────
+function renderPageviews(pageviews) {
+  const list = Object.values(pageviews).sort((a,b) => new Date(b.timestamp) - new Date(a.timestamp)).slice(0, 50);
+  $('pv-badge').textContent = Object.keys(pageviews).length + ' total';
+
+  if (!list.length) {
+    $('pv-tbody').innerHTML = '<tr><td colspan="5"><div class="empty">No pageviews yet</div></td></tr>';
+    return;
+  }
+
+  $('pv-tbody').innerHTML = list.map(pv => {
+    const time = pv.timestamp ? new Date(pv.timestamp).toLocaleString('en-NG', { day:'numeric', month:'short', hour:'2-digit', minute:'2-digit' }) : '—';
+    const shortVid = pv.vid ? pv.vid.substring(0,12)+'…' : '—';
+    return `<tr>
+      <td>${time}</td>
+      <td style="color:var(--muted2)">${shortVid}</td>
+      <td style="color:var(--green)">${pv.source || 'direct'}</td>
+      <td>${pv.page || '/'}</td>
+      <td style="color:${pv.returning ? 'var(--y)' : 'var(--muted2)'}">${pv.returning ? '↩ Yes' : 'New'}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── REALTIME LISTENER ─────────────────────────────
+// Auto-refresh pageviews in real time
+let listening = false;
+const origLoadAll = loadAll;
+
+function startRealtime() {
+  if (listening) return;
+  listening = true;
+  onValue(ref(db, 'analytics/pageviews'), () => {
+    if ($('dashboard').style.display !== 'none') loadAll();
+  });
+}
+
+// Start realtime after first load
+const origLoad = loadAll;
+window.loadAll = async function() {
+  await origLoad();
+  startRealtime();
+};
+</script>
+</body>
+</html>
