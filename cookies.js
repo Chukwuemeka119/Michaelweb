@@ -205,21 +205,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const isReturning = snap.exists();
     const totalVisits = isReturning ? (snap.val().visits || 0) + 1 : 1;
 
-    // Update visitor record
-    await set(visitorRef, {
-      vid,
-      visits: totalVisits,
-      lastSeen: nowStr,
-      firstSeen: isReturning ? snap.val().firstSeen : nowStr,
-      source,
+    // Safely get firstSeen — never let it be undefined
+    const existingData  = isReturning ? snap.val() : {};
+    const firstSeenVal  = (existingData && existingData.firstSeen) ? existingData.firstSeen : nowStr;
+
+    // Update visitor record — strip any undefined values
+    const visitorData = {
+      vid:         vid,
+      visits:      totalVisits,
+      lastSeen:    nowStr,
+      firstSeen:   firstSeenVal,
+      source:      source,
       referrerUrl: document.referrer || 'direct',
-      userAgent: navigator.userAgent,
-      language: navigator.language,
-      screenW: window.screen.width,
-      screenH: window.screen.height,
-      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-      page: location.pathname,
-    });
+      userAgent:   navigator.userAgent || 'unknown',
+      language:    navigator.language  || 'unknown',
+      screenW:     window.screen.width  || 0,
+      screenH:     window.screen.height || 0,
+      timezone:    Intl.DateTimeFormat().resolvedOptions().timeZone || 'unknown',
+      page:        location.pathname    || '/',
+    };
+
+    await set(visitorRef, visitorData);
 
     // Log this session as a pageview
     push(ref(db, 'analytics/pageviews'), {
