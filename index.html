@@ -920,15 +920,15 @@ footer {
 
   <div class="hero-stats">
     <div>
-      <div class="hero-stat-num" id="stat-projects">0+</div>
+      <div class="hero-stat-num" id="stat-projects">0</div>
       <div class="hero-stat-label">Projects Done</div>
     </div>
     <div>
-      <div class="hero-stat-num" id="stat-clients">0+</div>
+      <div class="hero-stat-num" id="stat-clients">0</div>
       <div class="hero-stat-label">Happy Clients</div>
     </div>
     <div>
-      <div class="hero-stat-num" id="stat-services">0+</div>
+      <div class="hero-stat-num" id="stat-services">0</div>
       <div class="hero-stat-label">Services Offered</div>
     </div>
     <div>
@@ -1437,10 +1437,10 @@ function animCount(el, target, suffix='', duration=1800) {
 }
 const statsObserver = new IntersectionObserver(entries => {
   if (entries[0].isIntersecting) {
-    animCount(document.getElementById('stat-projects'), 112);
-    animCount(document.getElementById('stat-clients'), 100);
-    animCount(document.getElementById('stat-services'), 100);
-    animCount(document.getElementById('stat-years'), 2, '+');
+    animCount(document.getElementById('stat-projects'), 100, '+');
+    animCount(document.getElementById('stat-clients'), 100, '+');
+    animCount(document.getElementById('stat-services'), 150, '+');
+    animCount(document.getElementById('stat-years'), 5, '+');
     statsObserver.disconnect();
   }
 }, { threshold: 0.4 });
