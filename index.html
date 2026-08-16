@@ -426,6 +426,7 @@ section { padding: 130px 52px; }
 .services-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); gap: 1px;
   background: var(--border);
+  border-top: 1px solid var(--border2);
 }
 .service-card {
   background: var(--bg); padding: 44px 40px;
@@ -782,12 +783,20 @@ footer {
   color: var(--accent); margin-bottom: 12px;
 }
 .footer-brand-desc { font-size: .82rem; color: var(--muted); line-height: 1.7; max-width: 240px; }
+.footer-brand-desc li{
+  list-style-type: none;
+  padding-top:2.5% ;
+}
 .footer-col-title {
   font-family: var(--font-h); font-size: .62rem; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
   color: var(--muted); margin-bottom: 20px;
 }
-.footer-links { display: flex; flex-direction: column; gap: 12px; }
+.footer-links { 
+  display: flex;
+   flex-direction: column;
+    gap: 12px;
+   }
 .footer-links a {
   font-size: .85rem; color: var(--muted2);
   text-decoration: none; transition: color .2s;
@@ -1031,12 +1040,12 @@ footer {
       <p class="service-desc">Practical web design and development tutorials for kids, teens, and adults. Because technology has no age limit — learn at your own pace.</p>
       <span class="service-tag"><a href="https://chukwuemeka119.github.io/HTML/" target="_blank" style="color:inherit;text-decoration:none">View Tutorials →</a></span>
     </div>
-    <div class="service-card">
-      <div class="service-icon">🚀</div>
-      <div class="service-num">P1</div>
-      <div class="service-title">LNT Group Website</div>
-      <p class="service-desc">Rebuilt the full commercial website for LNT Group — a Lagos-based industrial equipment company. Dark industrial theme, filterable equipment listings, and WhatsApp integration.</p>
-      <span class="service-tag live">Delivered</span>
+     <div class="service-card">
+      <div class="service-icon">🛍️</div>
+      <div class="service-num">Project</div>
+      <div class="service-title">Mummy Aka Shop</div>
+      <p class="service-desc">A full e-commerce storefront for a retail shop in Abuja — product catalog, cart, secure checkout, customer accounts, and an admin dashboard, all synced live to real-time inventory via StockSavvy.</p>
+      <span class="service-tag live"><a href="https://chukwuemeka119.github.io/MummyAkaShop/" target="_blank" rel="noopener noreferrer" style="color:inherit;text-decoration:none">Visit Store →</a></span>
     </div>
   </div>
 </section>
@@ -1081,6 +1090,21 @@ footer {
         </div>
       </div>
     </div>
+    <div class="review-card reveal">
+    <div class="review-quote">"</div>
+      <div class="review-stars">
+        ★★★★★
+      </div>
+      <p class="review-text">The e-commerce website works perfectly fine — browsing, adding to cart, checkout, everything just flows the way it should. The inventory link with stocksavver makes online sales and order easy and fast. I gave it a 4.5 instead of a full 5, only because I don't believe anything is ever completely perfect.</p>
+      <div class="review-author-row">
+        <div class="review-avatar">MA</div>
+        <div>
+          <div class="review-author">Mummy Aka</div>
+          <div class="review-location">Shop Owner · Jikwoyi, Abuja</div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 
   <!-- Leave a review -->
@@ -1347,6 +1371,19 @@ footer {
       <div class="footer-brand-logo">MW™</div>
       <p class="footer-brand-desc">Michael Web™ — crafting digital experiences for businesses and individuals across Nigeria and beyond.</p>
     </div>
+            <div  class="footer-brand-desc">
+          <p> We are constantly working to improve this platform. Here are updates set to come out 14 of september;   </p>
+          <ul>
+            <li> 👉 Sleek Design </li>
+            <li> 👉 The Face of Michael Web </li>
+            <li> 👉 Resume Builder </li>
+            <li> 👉 AI assistant </li>
+            <li> 👉 AI image generation </li>
+            <li> 👉 More Reviews </li>
+            <li> 👉 Lots more </li>
+            
+          </ul>
+        </div>
     <div>
       <div class="footer-col-title">Navigation</div>
       <div class="footer-links">
